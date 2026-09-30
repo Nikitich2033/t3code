@@ -1,4 +1,4 @@
-# ArbieCode
+# ArbieCode (lolz)
 
 <p align="center"><img src="apps/web/public/arbie.png" alt="ArbieCode mascot" width="160" /></p>
 
