@@ -117,6 +117,7 @@ export const Route = createRootRoute({
   errorComponent: RootRouteErrorView,
   notFoundComponent: RootRouteNotFoundView,
   head: () => ({
+    title: APP_DISPLAY_NAME,
     meta: [{ name: "title", content: APP_DISPLAY_NAME }],
   }),
 });

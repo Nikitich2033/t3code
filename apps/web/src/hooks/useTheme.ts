@@ -17,6 +17,7 @@ import {
   THEME_APPEARANCE_MODE_STORAGE_KEY,
   THEME_FOLLOW_SYSTEM_STORAGE_KEY,
   THEME_HALVES_STORAGE_KEY,
+  T3_CHAT_THEME_ID,
   ThemePreference,
   type ThemeAppearance,
   type ThemeHalves,
@@ -38,7 +39,7 @@ type DesktopThemeBridge = Pick<DesktopBridge, "setTheme">;
 const STORAGE_KEY = "t3code:theme";
 const MEDIA_QUERY = "(prefers-color-scheme: dark)";
 const DEFAULT_THEME_SNAPSHOT: ThemeSnapshot = {
-  theme: "system",
+  theme: T3_CHAT_THEME_ID,
   resolvedTheme: "light",
   systemDark: false,
   followSystem: true,
@@ -163,7 +164,7 @@ function readStoredFollowSystem(theme: Theme): boolean {
     // Fall back to the legacy theme value when the separate preference is unavailable.
   }
 
-  return theme === "system";
+  return theme === "system" || theme === T3_CHAT_THEME_ID;
 }
 
 function isThemePreferenceMode(value: string | null): value is ThemePreferenceMode {

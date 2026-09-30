@@ -397,33 +397,33 @@ describe("theme files", () => {
     });
   });
 
-  it("keeps the T3 Chat palette faithful and readable", () => {
+  it("keeps the RiskBase palette faithful and readable", () => {
     expectThemeColors(T3_CHAT_THEME.colors, {
-      canvas: "#fdf7fd",
-      chrome: "#fdf7fd",
-      toolbarBorder: "#efbdeb",
-      toolbarControl: "#f3e6f5",
-      toolbarControlHover: "#eccfe3",
-      surfaceRaised: "#fdfafd",
-      input: "#e7c1dc",
-      focus: "#db2777",
-      messageSurface: "#f7def2",
-      codeBackground: "#f5ecf9",
-      codeForeground: "#673c8b",
-      accentSurface: "#f3e6f5",
-      sidebar: "#f2e1f4",
+      canvas: "#fcfcfc",
+      chrome: "#fcfcfc",
+      toolbarBorder: "#e4e4e7",
+      toolbarControl: "#ffffff",
+      toolbarControlHover: "#f4f4f5",
+      surfaceRaised: "#fcfcfc",
+      input: "#d4d4d8",
+      focus: "#0f766e",
+      messageSurface: "#e1f8f5",
+      codeBackground: "#ffffff",
+      codeForeground: "#27272a",
+      accentSurface: "#e1f8f5",
+      sidebar: "#fafafa",
     });
     expectThemeColors(T3_CHAT_THEME.variants!.dark!, {
-      canvas: "#1f1a24",
-      chrome: "#1f1a24",
-      surface: "#29232d",
-      surfaceRaised: "#2c2631",
-      input: "#302029",
-      focus: "#db2777",
-      messageSurface: "#2b2431",
-      codeBackground: "#1f1a24",
-      sidebar: "#171018",
-      sidebarBorder: "#322028",
+      canvas: "#0a0a0a",
+      chrome: "#0a0a0a",
+      surface: "#111111",
+      surfaceRaised: "#111111",
+      input: "#1e1e1e",
+      focus: "#43d9ca",
+      messageSurface: "#123b38",
+      codeBackground: "#111111",
+      sidebar: "#000000",
+      sidebarBorder: "#141414",
     });
 
     for (const mode of ["light", "dark"] as const) {

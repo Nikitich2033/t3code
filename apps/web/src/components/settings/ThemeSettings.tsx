@@ -23,10 +23,6 @@ import {
   type ThemeDefinition,
   type ThemeHalves,
   T3_CHAT_THEME,
-  EMBER_THEME,
-  GROVE_THEME,
-  IRIS_THEME,
-  OCEAN_THEME,
 } from "../../themePalette";
 import {
   AlertDialog,
@@ -54,13 +50,7 @@ import {
 } from "./ThemePreviewCircles";
 import { ThemeWireframe } from "./ThemeWireframe";
 
-const MAINTAINER_THEMES: ReadonlyArray<ThemeDefinition> = [
-  T3_CHAT_THEME,
-  GROVE_THEME,
-  OCEAN_THEME,
-  EMBER_THEME,
-  IRIS_THEME,
-];
+const MAINTAINER_THEMES: ReadonlyArray<ThemeDefinition> = [T3_CHAT_THEME];
 
 function collectionVariantLabels(themes: ReadonlyArray<ThemeDefinition>): ReadonlyArray<string> {
   if (themes.length === 0) return [];
@@ -775,24 +765,6 @@ export function ThemeLibrary({
         className="grid w-full gap-2"
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 16rem), 1fr))" }}
       >
-        {STANDARD_THEME_CARDS.map((standardTheme) => (
-          <ThemeLibraryCard
-            activeModes={pickedModesFor(null)}
-            isActive={false}
-            key={standardTheme.id}
-            onDuplicate={() =>
-              openThemeEditor({
-                editingThemeId: null,
-                seedThemeId: null,
-                seedName: `${standardTheme.label} copy`,
-                initialAppearance,
-              })
-            }
-            onUse={() => persistTheme(appearanceMode === "system" ? "system" : appearanceMode)}
-            onUseMode={handlePairPick(null)}
-            theme={standardTheme}
-          />
-        ))}
         {MAINTAINER_THEMES.map((maintainerTheme) => {
           const card = getThemeCardDefinition(maintainerTheme);
           return (

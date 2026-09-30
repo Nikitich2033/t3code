@@ -24,10 +24,7 @@ export { EMBER_THEME, GROVE_THEME, IRIS_THEME, OCEAN_THEME, T3_CHAT_THEME, THEME
 export type { ThemeAppearance, ThemeColorRole, ThemeColors, ThemeDefinition, ThemeVariants };
 
 export const T3_CHAT_THEME_ID = "t3-chat" as const;
-const GROVE_THEME_ID = "grove" as const;
 export const OCEAN_THEME_ID = "ocean" as const;
-const EMBER_THEME_ID = "ember" as const;
-const IRIS_THEME_ID = "iris" as const;
 export const THEME_FILE_VERSION = 1 as const;
 export const CUSTOM_THEMES_STORAGE_KEY = "t3code:themes:v1";
 export const THEME_FOLLOW_SYSTEM_STORAGE_KEY = "t3code:theme-follow-system";
@@ -294,15 +291,17 @@ export function subscribeToCustomThemes(listener: () => void): () => void {
   };
 }
 
-// Earlier builds shipped every maintainer theme under a t3- prefix; only the
-// genuinely T3-branded palette keeps it. Stored preferences and mixes with the
-// old ids stay readable through this alias table.
+// Retired built-in palettes resolve to RiskBase so old preferences remain usable.
 const LEGACY_THEME_ID_ALIASES: Readonly<Record<string, string>> = {
   [LEGACY_T3_CHAT_DARK_THEME_ID]: T3_CHAT_THEME_ID,
-  "t3-grove": GROVE_THEME_ID,
-  "t3-ocean": OCEAN_THEME_ID,
-  "t3-ember": EMBER_THEME_ID,
-  "t3-iris": IRIS_THEME_ID,
+  grove: T3_CHAT_THEME_ID,
+  ocean: T3_CHAT_THEME_ID,
+  ember: T3_CHAT_THEME_ID,
+  iris: T3_CHAT_THEME_ID,
+  "t3-grove": T3_CHAT_THEME_ID,
+  "t3-ocean": T3_CHAT_THEME_ID,
+  "t3-ember": T3_CHAT_THEME_ID,
+  "t3-iris": T3_CHAT_THEME_ID,
 };
 
 function normalizeThemeId(themeId: string): string {

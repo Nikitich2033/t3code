@@ -1,8 +1,6 @@
 import {
   BUILT_IN_THEMES,
   T3_CHAT_THEME,
-  T3_CODE_LIGHT_THEME_COLORS,
-  T3_CODE_DARK_THEME_COLORS,
   getThemeColorsForAppearance,
   MOBILE_DEFAULT_THEME_ID,
   MOBILE_THEME_IDS as SHARED_MOBILE_THEME_IDS,
@@ -25,11 +23,7 @@ export type MobileThemeIds = Readonly<Record<MobileThemeAppearance, MobileThemeI
 export const MOBILE_THEME_OPTIONS: ReadonlyArray<{
   readonly id: MobileThemeId;
   readonly label: string;
-}> = [
-  { id: DEFAULT_MOBILE_THEME_ID, label: "T3 Code" },
-  { id: "material-you", label: "Material You" },
-  ...BUILT_IN_THEMES.map((theme) => ({ id: theme.id as MobileThemeId, label: theme.label })),
-];
+}> = [...BUILT_IN_THEMES.map((theme) => ({ id: theme.id as MobileThemeId, label: theme.label }))];
 
 // Closed set: every key `createMobileThemeVariables` writes. Reads of a
 // misspelled variable then fail to compile instead of yielding undefined.
@@ -37,6 +31,7 @@ export type MobileThemeVariable = keyof ReturnType<typeof createMobileThemeVaria
 export type MobileThemeVariables = Readonly<Record<MobileThemeVariable, string>>;
 
 export function normalizeMobileThemeId(value: unknown): MobileThemeId {
+  if (value === "material-you") return DEFAULT_MOBILE_THEME_ID;
   return typeof value === "string" && (MOBILE_THEME_IDS as readonly string[]).includes(value)
     ? (value as MobileThemeId)
     : DEFAULT_MOBILE_THEME_ID;
@@ -354,9 +349,6 @@ export function getMobileThemeColors(
   themeId: SharedMobileThemeId,
   appearance: MobileThemeAppearance,
 ): ThemeColors {
-  if (themeId === DEFAULT_MOBILE_THEME_ID) {
-    return appearance === "dark" ? T3_CODE_DARK_THEME_COLORS : T3_CODE_LIGHT_THEME_COLORS;
-  }
   const theme = BUILT_IN_THEMES.find((candidate) => candidate.id === themeId) ?? T3_CHAT_THEME;
   return getThemeColorsForAppearance(theme, appearance) ?? theme.colors;
 }
@@ -398,8 +390,7 @@ export function getMobileThemePreviewColors(
   themeId: MobileThemeId,
   appearance: MobileThemeAppearance,
 ): ThemePreviewColors {
-  if (themeId === DEFAULT_MOBILE_THEME_ID || themeId === "material-you")
-    return STANDARD_THEME_PREVIEW_COLORS[appearance];
+  if (themeId === "material-you") return STANDARD_THEME_PREVIEW_COLORS[appearance];
   const theme = BUILT_IN_THEMES.find((candidate) => candidate.id === themeId) ?? T3_CHAT_THEME;
   const colors = getThemeColorsForAppearance(theme, appearance) ?? theme.colors;
   return {

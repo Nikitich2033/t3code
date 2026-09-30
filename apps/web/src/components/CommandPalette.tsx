@@ -82,11 +82,7 @@ import { useCustomThemes } from "../hooks/useCustomThemes";
 import { useEnvironmentThemeDefinitions } from "../hooks/useEnvironmentTheme";
 import { BUILT_IN_THEMES } from "@t3tools/shared/themePalettes";
 import { getThemeDefinition } from "../themePalette";
-import {
-  STANDARD_THEME_CARDS,
-  getThemeCardDefinition,
-  ThemePreviewCircle,
-} from "./settings/ThemePreviewCircles";
+import { getThemeCardDefinition, ThemePreviewCircle } from "./settings/ThemePreviewCircles";
 import { readLocalApi } from "../localApi";
 import { desktopLocalBackendId } from "../connection/desktopLocal";
 import { filesystemEnvironment } from "../state/filesystem";
@@ -791,7 +787,6 @@ function OpenCommandPaletteDialog(props: {
   const themeCards = useMemo(() => {
     const seen = new Set<string>();
     return [
-      ...STANDARD_THEME_CARDS.map((card) => ({ ...card, id: null })),
       ...[...BUILT_IN_THEMES, ...customThemes, ...environmentThemes]
         .filter((definition) => {
           if (seen.has(definition.id)) return false;
